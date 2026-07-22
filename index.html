@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocolo Vitalidade - Retome o Controle</title>
+    <style>
+        :root {
+            --primary: #d90429;
+            --secondary: #1a1a1d;
+            --text-dark: #2b2b2b;
+            --text-light: #f8f9fa;
+            --accent: #ffb703;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f4f4f4;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .hero {
+            background-color: var(--secondary);
+            color: var(--text-light);
+            text-align: center;
+            padding: 60px 20px;
+            border-bottom: 5px solid var(--primary);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            max-width: 900px;
+            margin: 0 auto 20px auto;
+            line-height: 1.2;
+        }
+
+        .hero h2 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #ccc;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 30px;
+            background: #fff;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            text-align: left;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .alert-box {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 20px;
+            border-left: 5px solid #ffeeba;
+            margin: 30px 0;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Layout em colunas (Texto + Imagem) */
+        .content-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .content-row.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .text-col {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .img-col {
+            flex: 0 0 350px;
+            text-align: center;
+        }
+
+        .img-col img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            background-color: #e9ecef; /* Placeholder color se a imagem não carregar */
+            min-height: 250px;
+            object-fit: cover;
+        }
+
+        /* Elementos menores (Bullets e Depoimentos) */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .img-small {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            float: left;
+            margin-right: 20px;
+            background-color: #e9ecef;
+            object-fit: cover;
+            border: 3px solid #ddd;
+        }
+        
+        .img-bullet {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            float: left;
+            margin-right: 15px;
+            background-color: #e9ecef;
+            object-fit: cover;
+        }
+
+        ul {
+            list-style-type: none;
+            margin-bottom: 30px;
+        }
+
+        ul li {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            background: #fdfbf7;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        .testimonial {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid #ddd;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            margin-top: 10px;
+            font-style: normal;
+            color: #555;
+        }
+
+        /* Call To Action */
+        .cta-container {
+            text-align: center;
+            margin: 50px 0;
+            padding: 30px;
+            background-color: #fdfbf7;
+            border-radius: 8px;
+            border: 2px dashed #ccc;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #28a745;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.6rem;
+            font-weight: bold;
+            padding: 20px 40px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.2s, background-color 0.2s;
+            animation: pulse 2s infinite;
+            margin-bottom: 20px;
+        }
+
+        .btn:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background-color: var(--secondary);
+            color: #888;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .content-row, .content-row.reverse { flex-direction: column; }
+            .img-col { flex: 0 0 auto; width: 100%; }
+            .hero h1 { font-size: 1.8rem; }
+            .btn { font-size: 1.2rem; padding: 15px 20px; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <h1>O Segredo Chocante Que a Indústria Farmacêutica Tenta Esconder Sobre a Sua Vida Íntima</h1>
+        <h2>Descubra o método 100% natural para restaurar sua potência, ter ereções firmes e recuperar sua confiança sem depender de "pílulas azuis" perigosas.</h2>
+    </section>
+
+    <div class="container">
+        
+        <!-- Bloco 1 -->
+        <div class="content-row">
+            <div class="text-col">
+                <p>Prezado amigo,</p>
+                <p>Se você já sentiu aquele frio na barriga, a ansiedade e o constrangimento de não conseguir "comparecer" na hora H... <strong>leia cada palavra desta página.</strong></p>
+                <p>A frustração de ver o clima perfeito desmoronar, o silêncio desconfortável no quarto e o olhar de decepção da sua parceira são coisas que nenhum homem deveria passar.</p>
+                <p>Mas antes que você se culpe ou ache que está perdendo a sua masculinidade para a idade, eu preciso que você saiba de uma verdade inconveniente.</p>
+            </div>
+            <div class="img-col">
+                <!-- Imagem 1: Espaço para foto do problema / homem frustrado -->
+                <img src="1.png" alt="Imagem 1 - Homem reflexivo/frustrado" />
+            </div>
+        </div>
+        
+        <div class="alert-box">
+            A CULPA NÃO É SUA. Você está sendo vítima de um sistema que lucra bilhões com soluções temporárias e perigosas.
+        </div>
+
+        <!-- Bloco 2 -->
+        <h3>A Mentira da "Pílula Azul"</h3>
+        <div class="content-row reverse">
+            <div class="text-col">
+                <p>Você sabe do que estou falando. Aqueles remedinhos famosos prometem milagres, mas o que eles não te contam é o preço altíssimo que você paga por isso. Dor de cabeça latejante, visão embaçada, palpitações no peito, rosto vermelho e um risco silencioso e constante ao seu coração.</p>
+                <p>Pior ainda: eles não curam nada. Eles apenas "forçam" o seu corpo por algumas horas, criando um ciclo de dependência. Sem a pílula, você se sente ainda mais incapaz.</p>
+            </div>
+            <div class="img-col">
+                <!-- Imagem 2: Espaço para foto de pílulas / alerta de perigo -->
+                <img src="2.png" alt="Imagem 2 - Pílulas genéricas" />
+            </div>
+        </div>
+        
+        <!-- Bloco 3 -->
+        <h3>A Raiz do Problema</h3>
+        <div class="content-row">
+            <div class="text-col">
+                <p>Estudos recentes de universidades revelaram que a disfunção erétil não é apenas um problema de "idade" ou "psicológico". Na grande maioria dos homens acima dos 35 anos, o problema está enraizado em um <strong>bloqueio crônico da microcirculação pélvica</strong> e em uma <strong>deficiência silenciosa de óxido nítrico.</strong></p>
+                <p>Sem óxido nítrico suficiente, seus vasos sanguíneos simplesmente não conseguem relaxar e expandir para permitir a entrada de sangue necessária para uma ereção rígida e duradoura.</p>
+            </div>
+            <div class="img-col">
+                <!-- Imagem 3: Espaço para foto ilustrativa de circulação / anatomia básica -->
+                <img src="3.png" alt="Imagem 3 - Ilustração de fluxo sanguíneo" />
+            </div>
+        </div>
+
+        <h3>Apresentando: O Protocolo Vitalidade</h3>
+        <p>O Protocolo Vitalidade é um método passo a passo, 100% natural, desenvolvido para reverter o bloqueio circulatório e reativar a sua fábrica natural de óxido nítrico. Ao aplicar este protocolo na sua rotina, você vai:</p>
+        
+        <!-- Blocos 4 a 7 (Bullets com imagens) -->
+        <ul>
+            <li class="clearfix">
+                <!-- Imagem 4 -->
+                <img src="4.png" alt="Imagem 4" class="img-bullet" />
+                <strong>Reativar ereções firmes e confiáveis:</strong> Esteja pronto para a ação sempre que o momento surgir, sem planejamento.
+            </li>
+            <li class="clearfix">
+                <!-- Imagem 5 -->
+                <img src="5.png" alt="Imagem 5" class="img-bullet" />
+                <strong>Eliminar a ansiedade de desempenho:</strong> Recupere a confiança absoluta de que você vai dar conta do recado, todas as vezes.
+            </li>
+            <li class="clearfix">
+                <!-- Imagem 6 -->
+                <img src="6.png" alt="Imagem 6" class="img-bullet" />
+                <strong>Aumentar a energia e o vigor:</strong> Surpreenda sua parceira com uma resistência que você achava que tinha perdido nos seus 20 anos.
+            </li>
+            <li class="clearfix">
+                <!-- Imagem 7 -->
+                <img src="7.png" alt="Imagem 7" class="img-bullet" />
+                <strong>Proteger seu coração:</strong> Ao melhorar a sua circulação de forma natural, você beneficia não apenas sua vida íntima, mas sua saúde como um todo.
+            </li>
+        </ul>
+
+        <h3>O Que Nossos Alunos Estão Dizendo:</h3>
+
+        <!-- Bloco 8: Depoimento 1 -->
+        <div class="testimonial clearfix">
+            <!-- Imagem 8: Foto de perfil do depoimento -->
+            <img src="8.png" alt="Imagem 8 - Carlos M." class="img-small" />
+            "Eu estava quase desistindo do meu casamento. Minha esposa achava que eu não sentia mais atração por ela, mas a verdade é que eu estava apavorado de falhar novamente. O Protocolo Vitalidade mudou minha vida em poucas semanas. Voltei a ser o homem da casa."
+            <div class="testimonial-author">- Carlos M., 48 anos</div>
+        </div>
+
+        <!-- Bloco 9: Depoimento 2 -->
+        <div class="testimonial clearfix">
+            <!-- Imagem 9: Foto de perfil do depoimento -->
+            <img src="9.png" alt="Imagem 9 - Roberto F." class="img-small" />
+            "Sempre fui cético, mas estava cansado dos efeitos colaterais dos remédios de farmácia. Comecei a aplicar os hábitos do guia e no 12º dia, a diferença foi surreal. Acordar com aquela 'energia' matinal que eu não via há anos foi libertador!"
+            <div class="testimonial-author">- Roberto F., 55 anos</div>
+        </div>
+
+        <!-- Bloco 10: Garantia e CTA -->
+        <div class="cta-container content-row">
+            <div class="img-col" style="flex: 0 0 200px;">
+                <!-- Imagem 10: Selo de Garantia -->
+                <img src="10.png" alt="Imagem 10 - Selo de Garantia" style="border-radius:0; box-shadow:none; background:transparent;" />
+            </div>
+            <div class="text-col">
+                <h3 style="margin-top:0; border:none;">Tome a Decisão Hoje (Risco Zero)</h3>
+                <p>Eu sei que você pode estar cético. Por isso, estou assumindo 100% do risco. Você tem <strong>30 Dias de Garantia Incondicional.</strong> Se você não notar uma transformação radical na sua firmeza, disposição e confiança, eu devolvo cada centavo do seu dinheiro.</p>
+                <a href="#" class="btn">SIM! EU QUERO RECUPERAR MINHA POTÊNCIA AGORA</a>
+                <p style="font-size:0.9rem; color:#666;">Pagamento 100% Seguro e Discreto. O nome do produto não aparecerá na sua fatura.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Protocolo Vitalidade. Todos os direitos reservados.</p>
+        <p>Aviso legal: Este site não é um substituto para conselhos médicos profissionais. Sempre consulte um médico antes de iniciar qualquer novo programa de saúde.</p>
+    </footer>
+
+</body>
+</html>
